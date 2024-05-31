@@ -31,20 +31,16 @@ def default_app():
 
 
 @pytest.fixture
-def _app(tmp_path):
-    db_path = tmp_path / 'test_db.sqlite3'
-    db_uri = 'sqlite:///' + str(db_path)
+def _app():
     app.config.update({
         'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': db_uri,
         'WTF_CSRF_ENABLED': False,
     })
     with app.app_context():
         db.create_all()
-    yield app
-    db.drop_all()
-    db.session.close()
-    db_path.unlink()
+        yield app
+        db.drop_all()
+        db.session.close()
 
 
 @pytest.fixture
@@ -65,4 +61,8 @@ def mixer():
 
 @pytest.fixture
 def short_python_url(mixer):
-    return mixer.blend(URL_map, original='https://www.python.org', short='py')
+    with app.app_context():
+        short_url = mixer.blend(URL_map, original='https://www.python.org', short='py')
+        db.session.add(short_url)
+        db.session.refresh(short_url)
+    return short_url
