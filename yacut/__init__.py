@@ -12,4 +12,4 @@ migrate = Migrate(app, db)
 with app.app_context():
     db.create_all()
 
-from . import forms, models, views, api_views
+from . import forms, models, views, api_views # noqa
