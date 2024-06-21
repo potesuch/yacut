@@ -9,7 +9,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+from . import forms, models, views, api_views # noqa
+
 with app.app_context():
     db.create_all()
-
-from . import forms, models, views, api_views # noqa
