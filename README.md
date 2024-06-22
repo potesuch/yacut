@@ -14,12 +14,14 @@ source venv/bin/activate  # Для Windows используйте `venv\Scripts\
 ```
 ### Клонирование репозитория
 
+``` sh
 git clone https://github.com/potesuch/yacut.git
 cd repository
+```
 
 ### Настройка конфигурации
 
-Создайте файл .env в корне проекта и заполните его данными:
+Создайте файл `.env` в корне проекта и заполните его данными:
 
 ``` plaintext
 DATABASE_URI=<URI базы данных>
