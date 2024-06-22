@@ -16,7 +16,7 @@ source venv/bin/activate  # Для Windows используйте `venv\Scripts\
 
 ``` sh
 git clone https://github.com/potesuch/yacut.git
-cd repository
+cd yacut
 ```
 
 ### Настройка конфигурации
